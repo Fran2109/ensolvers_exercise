@@ -1,6 +1,10 @@
-import React from 'react';
-import { Input } from 'reactstrap';
+import React, { useState } from 'react';
+import { Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios';
+
+import Update from '../Update/Update';
+import Delete from '../Delete/Delete';
+import './Row.css';
 
 const Row = ({item}) => {
     const onChange = (e) =>{
@@ -14,13 +18,17 @@ const Row = ({item}) => {
             console.log(error)
         })
     }
+
     return(
         <tr>
-            <td><Input type="checkbox" defaultChecked={item.state} onChange={onChange} /></td>
+            <td className="check"><Input type="checkbox" defaultChecked={item.state} onChange={onChange} /></td>
             <td>{item.name}</td>
             <td>{item.dateCreated}</td>
-            <td>
-                action
+            <td>{item.dateUpdated===null? 'Never Updated' : item.dateUpdated}</td>
+            <td className="action">
+                <Update id={item._id} type="item" />
+                <Delete id={item._id} type="item" />
+                <Button color="secondary">Move</Button>
             </td>
         </tr>
     )

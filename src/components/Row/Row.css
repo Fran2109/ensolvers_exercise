@@ -1,0 +1,8 @@
+tr td.action{
+    display: flex;
+    justify-content: space-around;
+}
+
+tr td.action .option{
+    margin: 0px 10px;
+}

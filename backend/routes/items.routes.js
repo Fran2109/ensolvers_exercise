@@ -4,10 +4,22 @@ let mongoose = require('mongoose'),
 
 
 let itemsSchema = require('../models/Items');
+let foldersSchema = require('../models/Folders');
 
 // CREATE Item
 router.route('/create-item').post((req, res, next) => {
     itemsSchema.create(req.body, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      console.log(data);
+      res.json(data);
+    }
+  })
+});
+
+router.route('/create-folder').post((req, res, next) => {
+    foldersSchema.create(req.body, (error, data) => {
     if (error) {
       return next(error);
     } else {

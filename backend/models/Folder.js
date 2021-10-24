@@ -2,15 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let foldersSchema = new Schema({
-  nameFolder: {
+  name: {
     type: String
   },
   dateCreated: {
-    type: Date,
-    default: Date().now
+    type: String
+  },
+  dateUpdated: {
+    type: String
   }
 }, {
-    collection: 'folders'
-  })
+  collection: 'folders'
+})
 
-module.exports = mongoose.model('Folders', foldersSchema);
+module.exports = mongoose.model('Folders', foldersSchema)

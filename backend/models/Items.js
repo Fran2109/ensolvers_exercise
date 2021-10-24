@@ -10,7 +10,11 @@ let itemsSchema = new Schema({
     default: false
   },
   dateCreated: {
-    type: String
+    type: String,
+  },
+  dateUpdated: {
+    type: String,
+    default: null,
   },
   folder: {
     type: Schema.ObjectId,

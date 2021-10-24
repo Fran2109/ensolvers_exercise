@@ -1,0 +1,22 @@
+.ListItems{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ListItems .table-wrapper {
+    margin-top: 20px;
+    width: 70%;
+}
+
+.ListItems .table-wrapper .Table{
+    width: auto;
+}
+
+.ListItems .table-wrapper .ListFooter{
+    display: flex;
+    width: 30%;
+    flex-direction: row;
+    justify-content: space-around;
+}
