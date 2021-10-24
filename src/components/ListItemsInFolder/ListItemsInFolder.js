@@ -1,32 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Table } from 'reactstrap';
-import Add from '../Add/Add';
-import Row from '../Row/Row';
-import './ListItems.css';
+import { Table, Button } from 'reactstrap';
+import Row from './../Row/Row';
+import Add from './../Add/Add';
 
-const ListItems = () =>{
-    const [items, setItems] = useState();    
-    const [folders, setFolders] = useState();
+const ListItemsInFolder = () => {
+    const {folderId} = useParams();
+    const [items, setItems] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:4000/items/')
+        axios.get('http://localhost:4000/items/Get-Items-Folder/'+folderId)
         .then(res => {
             setItems(res.data);
+            console.log(items);
         })
         .catch((error) => {
             console.log(error);
-        })  
-
-        axios.get('http://localhost:4000/items/Get-Folders')
-        .then(res => {
-            setFolders(res.data);
         })
-        .catch((error) => {
-            console.log(error);
-        }) 
     }, []);
-      
+
     return(
         <div className="ListItems">
             <div className="table-wrapper">
@@ -41,13 +34,6 @@ const ListItems = () =>{
                     </tr>
                     </thead>
                     <tbody>
-                        {folders!==undefined? 
-                            folders.map((item) => {
-                                return(
-                                    <Row key={item._id} item={item} type="folder"/>
-                                )
-                            })
-                        : null}
                         {items!==undefined? 
                             items.map((item) => {
                                 return(
@@ -58,12 +44,12 @@ const ListItems = () =>{
                     </tbody>
                 </Table>
                 <div className="ListFooter">
-                    <Add type="item" />
-                    <Add type="folder" />
+                    <Button color="success"><Link to="/" style={{textDecoration: "none", color: "white"}}>Return to Root</Link></Button>
+                    <Add type="item" parentId={folderId}/>
                 </div>
             </div>
         </div>
     )
 }
 
-export default ListItems;
+export default ListItemsInFolder;

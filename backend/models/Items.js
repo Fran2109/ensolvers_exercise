@@ -1,7 +1,10 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+'use strict'
 
-let itemsSchema = new Schema({
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+/* var Folders = mongoose.model('Folders'); */
+
+var ItemsSchema = new Schema({
   name: {
     type: String
   },
@@ -19,10 +22,7 @@ let itemsSchema = new Schema({
   folder: {
     type: Schema.ObjectId,
     ref: "Folders",
-    default: null,
   }
-}, {
-    collection: 'items'
-  })
+});
 
-module.exports = mongoose.model('Items', itemsSchema)
+module.exports = mongoose.model('Items', ItemsSchema);

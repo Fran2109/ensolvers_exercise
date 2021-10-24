@@ -3,7 +3,7 @@ import {Modal, ModalHeader, ModalBody, ModalFooter, Button, Input, Label, Form, 
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const Add = ({ type }) =>{
+const Add = ({ type, parentId=null }) =>{
     const [name, setName] = useState('');
     var date = new Date();
     const [time, setTime] = useState((date.getUTCFullYear())+"/"+
@@ -31,16 +31,18 @@ const Add = ({ type }) =>{
             (new Date().getSeconds()<10?"0"+new Date().getSeconds():new Date().getSeconds()));
         const itemObject = {
             name: name,
-            dateCreated: time
+            dateCreated: time,
+            folder: parentId===null?null:parentId,
         };
-        axios.post('http://localhost:4000/items/'.type==="item"?'create-item':'create-folder', itemObject)
+        if(itemObject.folder===null){delete itemObject.folder;}
+        axios.post('http://localhost:4000/items/'+(type==="item"?'create-item':'create-folder'), itemObject)
         .then(res => console.log(res.data));
         Swal.fire({
             icon: 'success',
             title: type==="item"? "Item Created Successfully" : "Folder Created Successfully" ,
         })
         setTimeout(function () {
-            //window.location.reload();
+            window.location.reload();
         }, 1000);  
     }
 

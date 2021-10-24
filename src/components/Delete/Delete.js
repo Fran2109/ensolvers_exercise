@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Modal, ModalHeader, ModalBody, ModalFooter, Button, Input, Label, Form, FormGroup } from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -8,16 +8,35 @@ const Delete = ({ type, id }) =>{
     const toggle = () => setModal(!modal);
 
     const deleteItem = (id) => {
-        axios.delete('http://localhost:4000/items/delete-item/' + id)
+        if (type==="item")
+        {
+            axios.delete('http://localhost:4000/items/delete-item/' + id)
             .then((res) => {
                 console.log('Item successfully deleted!')
 
             }).catch((error) => {
                 console.log(error)
             })
+        } 
+        else 
+        {
+            axios.delete('http://localhost:4000/items/delete-folder/' + id)
+            .then((res) => {
+                console.log('Folder successfully deleted!')
+            }).catch((error) => {
+                console.log(error)
+            })
+            axios.delete('http://localhost:4000/items/delete-item-in-folder/' + id)
+            .then((res) => {
+                console.log('Items in Folder successfully deleted!')
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
+        
         Swal.fire({
             icon: 'error',
-            title: 'Item Deleted Successfully',
+            title: type==="item"?'Item Deleted Successfully':'Folder Deleted Successfully',
         })
         setTimeout(function () {
             window.location.reload();
