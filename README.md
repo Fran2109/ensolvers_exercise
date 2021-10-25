@@ -8,6 +8,34 @@
   <br />
 </div>
 
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-exercise">About The Exercise</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#front-end">Front-End</a></li>
+        <li><a href="#back-end">Back-End</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#item">Item</a></li>
+        <li><a href="#folder">Folder</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
 ## About The Exercise
 
 <p align="left">Implement a simple web application that allows you to create to-do items and folders to
@@ -124,6 +152,7 @@ There are two options at the beginning:
 <img align="left" src="Readme/image09.jpg" width="1920">
 <p>There is also a checkbox that marks if the folder is already full. If the folder is checked, all interior work items will also be checked</p>
 
+<p>If you click in the folder name you will be able to see all the work items that are inside this folder.</p>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
