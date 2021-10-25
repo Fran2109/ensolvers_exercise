@@ -55,7 +55,7 @@ const Add = ({ type, parentId=null }) =>{
                 <ModalBody>
                     <FormGroup>
                         <Label for="name">{type==="item"?"Item Name":"Folder Name"}</Label>
-                        <Input type="text" name="name" id="name" placeholder="Item Name" onChange={(e) => onChange(e)}/>
+                        <Input type="text" name="name" id="name" placeholder={type==="item"?"Item Name":"Folder Name"}onChange={(e) => onChange(e)}/>
                     </FormGroup>
                 </ModalBody>
                 <ModalFooter>
